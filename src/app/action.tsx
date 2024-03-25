@@ -12,13 +12,16 @@ import { z } from "zod";
 import { nanoid } from "ai";
 import { BotCard, BotMessage, SpinnerMessage } from "@/components/llm/message";
 import { sleep } from "openai/core.mjs";
-import { chain, convertMessages } from "@/agents/finance";
+import { chain, convertMessages, runAgent } from "@/agents/finance";
 import {
   FunctionToolCall,
   ToolCall,
 } from "openai/resources/beta/threads/runs/steps.mjs";
-import { runAgent } from "@/agents/tools";
-import { NewsList } from "@/components/llm/news";
+
+import { NewsCarousel } from "@/components/llm/news";
+import { StockChart } from "@/components/llm/chart";
+import FunctionCallBadge from "@/components/llm/fcall";
+import { Financials } from "@/components/llm/financials";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -44,6 +47,7 @@ async function submitUserMessage(content: string) {
   let textNode: React.ReactNode | undefined;
   let toolNode: React.ReactNode | undefined;
   const ui = createStreamableUI();
+  let assistantMessage = "";
   async function handleEvent(event: any) {
     const eventType = event.event;
 
@@ -60,23 +64,24 @@ async function submitUserMessage(content: string) {
     } else if (eventType === "on_llm_end") {
       if (textStream) {
         textStream.done();
+        assistantMessage += event.data.output;
         textStream = undefined;
       }
     } else if (eventType === "on_tool_start") {
       toolNode = (
-        <BotMessage
-          content={`${event.name} is being called with input: ${event.data.input}`}
-        />
+        <FunctionCallBadge name={event.name} args={event.data.input} />
       );
+      assistantMessage += event.data.output;
       ui.append(toolNode);
     } else if (eventType === "on_tool_end") {
+      assistantMessage += event.data.output;
       const parsedOutput = JSON.parse(event.data.output);
       if (event.name === "getNews" && parsedOutput) {
-        toolNode = <NewsList articles={parsedOutput.results} />;
+        toolNode = <NewsCarousel articles={parsedOutput} />;
+      } else if (event.name === "getStockPriceHistory") {
+        toolNode = <StockChart stockData={parsedOutput} />;
       } else {
-        toolNode = (
-          <BotMessage content={`${event.name} output: ${event.data.output}`} />
-        );
+        toolNode = <Financials data={parsedOutput} />;
       }
       ui.append(toolNode);
     }
@@ -91,10 +96,6 @@ async function submitUserMessage(content: string) {
 
     ui.done();
 
-    const lastAssistantMessage = aiState
-      .get()
-      .messages.find((message) => message.role === "assistant");
-
     aiState.done({
       ...aiState.get(),
       messages: [
@@ -102,7 +103,7 @@ async function submitUserMessage(content: string) {
         {
           id: nanoid(),
           role: "assistant",
-          content: lastAssistantMessage?.content || "",
+          content: assistantMessage,
         },
       ],
     });

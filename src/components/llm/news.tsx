@@ -1,52 +1,59 @@
-import { Card, Title, Text, Flex } from "@tremor/react";
-
+/* eslint-disable @next/next/no-img-element */
+"use client";
+import { CardContent, CardFooter, Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  CarouselItem,
+  CarouselContent,
+  CarouselPrevious,
+  CarouselNext,
+  Carousel,
+} from "@/components/ui/carousel";
 interface Article {
-  id: string;
-  publisher: object;
   title: string;
   author: string;
   published_utc: string;
   article_url: string;
-  tickers: string[];
-  amp_url?: string;
   image_url: string;
   description: string;
-  keywords: string[];
 }
 
-interface NewsCardProps {
-  article: Article;
-}
-
-const NewsCard = ({ article }: NewsCardProps) => {
+export function NewsCarousel({ articles }: { articles: Article[] }) {
   return (
-    <Card className="px-4 mb-4 w-44 h-full flex-shrink-0">
-      <img
-        src={article.image_url}
-        alt={article.title}
-        className="w-full h-40 object-cover mb-4"
-      />
-      <Title className="text-lg mb-2 line-clamp-2">{article.title}</Title>
-      <Text className="text-gray-500 mb-2 line-clamp-3">
-        {article.description}
-      </Text>
-      <a href={article.article_url} className="text-blue-500 hover:underline">
-        Read more
-      </a>
-    </Card>
+    <Carousel
+      opts={{
+        align: "start",
+      }}
+      className="w-full"
+    >
+      <CarouselContent className="flex space-x-4 p-4">
+        {articles.map((article, index) => (
+          <CarouselItem key={index} className="md:basis-1/2">
+            <Card className="w-full h-full flex flex-col">
+              <img
+                className="w-full h-48 object-cover"
+                src={article.image_url}
+                alt={article.title}
+              />
+              <CardContent className="space-y-2 flex-grow pt-2">
+                <h3 className="text-base font-semibold">{article.title}</h3>
+                <p className="text-sm text-gray-600">by {article.author}</p>
+                <p className="mt-2 text-sm line-clamp-4">
+                  {article.description}
+                </p>
+              </CardContent>
+              <CardFooter className="flex justify-between">
+                <Button variant="outline">Read more</Button>
+                <span className="text-sm">
+                  {new Date(article.published_utc).toLocaleDateString()}
+                </span>
+              </CardFooter>
+            </Card>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
   );
-};
-
-interface NewsListProps {
-  articles: Article[];
 }
-
-export const NewsList = ({ articles }: NewsListProps) => {
-  return (
-    <Flex className="overflow-x-auto">
-      {articles.map((article) => (
-        <NewsCard key={article.id} article={article} />
-      ))}
-    </Flex>
-  );
-};

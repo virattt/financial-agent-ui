@@ -15,16 +15,9 @@ import * as React from "react";
 export interface ChatInputProps {
   input: string;
   setInput: (value: string) => void;
-  isAtBottom: boolean;
-  scrollToBottom: () => void;
 }
 
-export function ChatInput({
-  input,
-  setInput,
-  isAtBottom,
-  scrollToBottom,
-}: ChatInputProps) {
+export function ChatInput({ input, setInput }: ChatInputProps) {
   const [aiState] = useAIState();
   const [messages, setMessages] = useUIState<typeof AI>();
   const { submitUserMessage } = useActions();
@@ -34,12 +27,7 @@ export function ChatInput({
 
   return (
     <div className="fixed inset-x-0 bottom-12 w-full  from-muted/30 from-0% to-muted/30 to-50% duration-300 ease-in-out animate-in dark:from-background/10 dark:from-10% dark:to-background/80 peer-[[data-state=open]]:group-[]:lg:pl-[250px] peer-[[data-state=open]]:group-[]:xl:pl-[300px]">
-      <ButtonScrollToBottom
-        isAtBottom={isAtBottom}
-        scrollToBottom={scrollToBottom}
-      />
-
-      <div className="mx-auto sm:max-w-2xl sm:px-4">
+      <div className="mx-auto sm:max-w-3xl sm:px-4">
         <div className="relative overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring">
           <form
             ref={formRef}
