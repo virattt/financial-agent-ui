@@ -1,4 +1,6 @@
-# FinGen - Open source Finance Agent with Generative UI
+# FinGen
+
+### Experiment with RSC and langchain to do financial analysis with gpt-4-turbo
 
 Leverages RSC from vercel's ai sdk  as well as LangChain agents, and the Polygon finance api to analyze companies
 
