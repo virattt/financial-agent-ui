@@ -3,11 +3,11 @@ import { StockData } from "@/components/llm/chart";
 import { restClient } from "@polygon.io/client-js";
 
 import axios from "axios";
-const rest = restClient(process.env.POLY_API_KEY);
+const rest = restClient(process.env.POLYGON_API_KEY);
 const POLYGON_BASE_URL = "https://api.polygon.io/";
 
 async function getFinancials(ticker: string) {
-  const url = `${POLYGON_BASE_URL}vX/reference/financials?ticker=${ticker}&limit=2&apiKey=${process.env.POLY_API_KEY}`;
+  const url = `${POLYGON_BASE_URL}vX/reference/financials?ticker=${ticker}&limit=2&apiKey=${process.env.POLYGON_API_KEY}`;
   const response = await axios.get(url);
   const data = response.data;
 
@@ -35,7 +35,7 @@ async function getNews(ticker: string) {
 
 async function getAggregates(ticker: string, from: string, to: string) {
   try {
-    const url = `${POLYGON_BASE_URL}v2/aggs/ticker/${ticker}/range/1/day/${from}/${to}?adjusted=true&sort=asc&limit=25&apiKey=${process.env.POLY_API_KEY}`;
+    const url = `${POLYGON_BASE_URL}v2/aggs/ticker/${ticker}/range/1/day/${from}/${to}?adjusted=true&sort=asc&limit=25&apiKey=${process.env.POLYGON_API_KEY}`;
     const response = await axios.get<StockData>(url);
     const data = response.data;
 
