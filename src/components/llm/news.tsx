@@ -1,14 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { CardContent, CardFooter, Card } from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import {
-  CarouselItem,
-  CarouselContent,
-  CarouselPrevious,
-  CarouselNext,
-  Carousel,
-} from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel";
+
 interface Article {
   title: string;
   author: string;
@@ -52,8 +47,8 @@ export function NewsCarousel({ articles }: { articles: Article[] }) {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious/>
+      <CarouselNext/>
     </Carousel>
   );
 }
