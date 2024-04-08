@@ -1,14 +1,13 @@
 "use client";
 import { AI } from "@/app/action";
 import { UserMessage } from "@/components/llm/message";
-import { ButtonScrollToBottom } from "@/components/scroll-to-bottom-btn";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
 import { useEnterSubmit } from "@/hooks/use-enter-submit";
 import { nanoid } from "ai";
-import { useAIState, useUIState, useActions } from "ai/rsc";
+import { useActions, useAIState, useUIState } from "ai/rsc";
 import { CornerDownLeft } from "lucide-react";
 import * as React from "react";
 
