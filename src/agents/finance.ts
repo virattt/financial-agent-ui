@@ -1,23 +1,14 @@
 import { ChatOpenAI } from "@langchain/openai";
 import { BytesOutputParser } from "@langchain/core/output_parsers";
 import { RunnableSequence } from "@langchain/core/runnables";
-import {
-  SystemMessage,
-  AIMessage,
-  HumanMessage,
-  ToolMessage,
-} from "@langchain/core/messages";
+import { AIMessage, BaseMessage, HumanMessage, SystemMessage, ToolMessage, } from "@langchain/core/messages";
 import { Message } from "@/app/action";
 
-import {
-  ChatPromptTemplate,
-  MessagesPlaceholder,
-} from "@langchain/core/prompts";
+import { ChatPromptTemplate, MessagesPlaceholder, } from "@langchain/core/prompts";
 import { AgentExecutor, createOpenAIToolsAgent } from "langchain/agents";
 import { z } from "zod";
 import { DynamicStructuredTool } from "@langchain/core/tools";
-import { BaseMessage } from "@langchain/core/messages";
-import { getFinancials, getNews, getAggregates } from "@/lib/polygon";
+import { getAggregates, getFinancials, getNews } from "@/lib/polygon";
 
 const llm = new ChatOpenAI({
   modelName: "gpt-4-turbo-preview",
@@ -90,6 +81,7 @@ const prompt = ChatPromptTemplate.fromMessages([
   ["user", "{input}"],
   new MessagesPlaceholder("agent_scratchpad"),
 ]);
+
 export async function runAgent(messages: BaseMessage[]) {
   const lastMessage = messages[messages.length - 1];
 
