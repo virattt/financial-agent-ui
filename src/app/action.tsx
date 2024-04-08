@@ -1,31 +1,15 @@
 //@ts-ignore
 import { OpenAI } from "openai";
-import {
-  createAI,
-  createStreamableUI,
-  createStreamableValue,
-  getMutableAIState,
-  readStreamableValue,
-  render,
-} from "ai/rsc";
-import { z } from "zod";
+import { createAI, createStreamableUI, createStreamableValue, getMutableAIState, } from "ai/rsc";
 import { nanoid } from "ai";
-import { BotCard, BotMessage, SpinnerMessage } from "@/components/llm/message";
-import { sleep } from "openai/core.mjs";
-import { chain, convertMessages, runAgent } from "@/agents/finance";
-import {
-  FunctionToolCall,
-  ToolCall,
-} from "openai/resources/beta/threads/runs/steps.mjs";
+import { BotMessage } from "@/components/llm/message";
+import { convertMessages, runAgent } from "@/agents/finance";
+import { FunctionToolCall, } from "openai/resources/beta/threads/runs/steps.mjs";
 
 import { NewsCarousel } from "@/components/llm/news";
 import { StockChart } from "@/components/llm/chart";
 import FunctionCallBadge from "@/components/llm/fcall";
 import { Financials } from "@/components/llm/financials";
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
 
 async function submitUserMessage(content: string) {
   "use server";
@@ -48,6 +32,7 @@ async function submitUserMessage(content: string) {
   let toolNode: React.ReactNode | undefined;
   const ui = createStreamableUI();
   let assistantMessage = "";
+
   async function handleEvent(event: any) {
     const eventType = event.event;
 
@@ -56,7 +41,7 @@ async function submitUserMessage(content: string) {
       if (content !== undefined && content !== "") {
         if (!textStream) {
           textStream = createStreamableValue("");
-          textNode = <BotMessage content={textStream.value} />;
+          textNode = <BotMessage content={textStream.value}/>;
           ui.append(textNode);
         }
         textStream.update(content);
@@ -69,7 +54,7 @@ async function submitUserMessage(content: string) {
       }
     } else if (eventType === "on_tool_start") {
       toolNode = (
-        <FunctionCallBadge name={event.name} args={event.data.input} />
+        <FunctionCallBadge name={event.name} args={event.data.input}/>
       );
       assistantMessage += event.data.output;
       ui.append(toolNode);
@@ -77,11 +62,11 @@ async function submitUserMessage(content: string) {
       assistantMessage += event.data.output;
       const parsedOutput = JSON.parse(event.data.output);
       if (event.name === "getNews" && parsedOutput) {
-        toolNode = <NewsCarousel articles={parsedOutput} />;
+        toolNode = <NewsCarousel articles={parsedOutput}/>;
       } else if (event.name === "getStockPriceHistory") {
-        toolNode = <StockChart stockData={parsedOutput} />;
+        toolNode = <StockChart stockData={parsedOutput}/>;
       } else {
-        toolNode = <Financials data={parsedOutput} />;
+        toolNode = <Financials data={parsedOutput}/>;
       }
       ui.append(toolNode);
     }
@@ -124,6 +109,7 @@ export type Message = {
   id: string;
   name?: string;
 };
+
 export type AIState = {
   chatId: string;
   messages: Message[];
