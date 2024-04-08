@@ -1,11 +1,8 @@
 "use client";
 import { AreaChart } from "@tremor/react";
 
-import { IgrFinancialChart } from "igniteui-react-charts";
-import { IgrFinancialChartModule } from "igniteui-react-charts";
-import { Card } from "@/components/ui/card";
-
 import React from "react";
+
 export interface StockData {
   ticker: string;
   queryCount: number;
