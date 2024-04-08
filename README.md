@@ -14,7 +14,7 @@ Please note that this finance agent is **not intended as financial advice**. It 
 You'll need a polygon API key and openai api key
 ```
 OPENAI_API_KEY=
-POLY_API_KEY=
+POLYGON_API_KEY=
 ```
 
 Install with npm or pnpm
