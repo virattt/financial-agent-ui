@@ -7,7 +7,7 @@ import { convertMessages, runAgent } from "@/agents/finance";
 import { FunctionToolCall, } from "openai/resources/beta/threads/runs/steps.mjs";
 
 import { NewsCarousel } from "@/components/llm/news";
-import { StockChart } from "@/components/llm/chart";
+import { Chart } from "@/components/llm/chart";
 import FunctionCallBadge from "@/components/llm/fcall";
 import { Financials } from "@/components/llm/financials";
 
@@ -64,7 +64,7 @@ async function submitUserMessage(content: string) {
       if (event.name === "getNews" && parsedOutput) {
         toolNode = <NewsCarousel articles={parsedOutput}/>;
       } else if (event.name === "getStockPriceHistory") {
-        toolNode = <StockChart stockData={parsedOutput}/>;
+        toolNode = <Chart stockData={parsedOutput}/>;
       } else {
         toolNode = <Financials data={parsedOutput}/>;
       }
