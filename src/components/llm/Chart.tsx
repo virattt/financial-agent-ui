@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { StockChart } from "@/components/llm/StockChart";
-import { Green } from "@/styles/colors";
+import { StockChartHeader } from "@/components/llm/StockChartHeader";
 
 export interface StockData {
   ticker: string;
@@ -25,15 +25,17 @@ interface StockResult {
 
 export function Chart({ stockData }: { stockData: StockData }) {
   return (
-    <StockChart
-      color={Green}
-      data={stockData.results.map((result) => {
-        return ({
-          date: formatDate(result.t),
-          close: result.c,
-        });
-      })}
-    />
+    <div>
+      <StockChartHeader stockData={stockData}/>
+      <StockChart
+        data={stockData.results.map((result) => {
+          return ({
+            date: formatDate(result.t),
+            close: result.c,
+          });
+        })}
+      />
+    </div>
   );
 }
 

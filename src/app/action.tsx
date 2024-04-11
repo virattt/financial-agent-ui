@@ -7,7 +7,7 @@ import { convertMessages, runAgent } from "@/agents/finance";
 import { FunctionToolCall, } from "openai/resources/beta/threads/runs/steps.mjs";
 
 import { NewsCarousel } from "@/components/llm/news";
-import { Chart } from "@/components/llm/chart";
+import { Chart } from "@/components/llm/Chart";
 import FunctionCallBadge from "@/components/llm/fcall";
 import { Financials } from "@/components/llm/financials";
 
@@ -57,7 +57,6 @@ async function submitUserMessage(content: string) {
         <FunctionCallBadge name={event.name} args={event.data.input}/>
       );
       assistantMessage += event.data.output;
-      ui.append(toolNode);
     } else if (eventType === "on_tool_end") {
       assistantMessage += event.data.output;
       const parsedOutput = JSON.parse(event.data.output);
