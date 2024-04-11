@@ -1,7 +1,7 @@
 "use client";
-import { AreaChart } from "@tremor/react";
-
 import React from "react";
+import { StockChart } from "@/components/llm/StockChart";
+import { Green } from "@/styles/colors";
 
 export interface StockData {
   ticker: string;
@@ -23,26 +23,26 @@ interface StockResult {
   n: number;
 }
 
-export function StockChart({ stockData }: { stockData: StockData }) {
-  const data = stockData.results.map((result) => ({
-    date: new Date(result.t).toLocaleString("en-US", {
-      month: "short",
-      day: "numeric",
-    }),
-    Open: result.o,
-  }));
-  const dataFormatter = (number: number) =>
-    `$${Intl.NumberFormat("us").format(number).toString()}`;
+export function Chart({ stockData }: { stockData: StockData }) {
   return (
-    <AreaChart
-      className="h-80"
-      data={data}
-      index="date"
-      categories={["Open"]}
-      colors={["rose"]}
-      valueFormatter={dataFormatter}
-      yAxisWidth={60}
-      onValueChange={(v) => console.log(v)}
+    <StockChart
+      color={Green}
+      data={stockData.results.map((result) => {
+        return ({
+          date: formatDate(result.t),
+          close: result.c,
+        });
+      })}
     />
   );
+}
+
+function formatDate(timestamp: number): string {
+  const date = new Date(timestamp);
+  const options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+  return date.toLocaleDateString('en-US', options);
 }
