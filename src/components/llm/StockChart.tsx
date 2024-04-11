@@ -11,10 +11,9 @@ import {
   XAxis,
   YAxis
 } from "recharts";
-import { DarkCharcoal, Gray } from "@/styles/colors";
+import { DarkCharcoal, Gray, Green, Pink, White } from "@/styles/colors";
 
 type Props = {
-  color: string;
   data: StockResult[];
 };
 
@@ -24,7 +23,7 @@ interface StockResult {
   date_label?: string;
 }
 
-export const StockChart: React.FC<Props> = ({ color, data }) => {
+export const StockChart: React.FC<Props> = ({ data }) => {
   if (data.length === 0) {
     return <div/>;
   }
@@ -34,24 +33,17 @@ export const StockChart: React.FC<Props> = ({ color, data }) => {
   const maxPrice = Math.max(startPrice, endPrice, startPrice);
   const minPrice = Math.min(startPrice, endPrice, startPrice);
 
-  // Add additional empty data / price objects, if needed
-  const clonedData = data.map(a => {
-    return { ...a }
-  })
-  // addPaddingToTimeSeries(clonedData, timeRange)
+  const color = endPrice > startPrice ? Green : Pink;
 
   return (
     <ResponsiveContainer width="100%" height={300}>
-      <AreaChart className="ml-n2" data={clonedData}>
-        <defs>
-          <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor={color} stopOpacity={0.20}/>
-            <stop offset="30%" stopColor={color} stopOpacity={0.05}/>
-            <stop offset="70%" stopColor={color} stopOpacity={0.00}/>
-          </linearGradient>
-        </defs>
-
-        <Area dataKey="close" stroke={color} strokeWidth={2.5} fill="url(#chartGradient)"/>
+      <AreaChart className="ml-n2" data={data}>
+        <Area
+          dataKey="close"
+          stroke={color}
+          strokeWidth={2}
+          fill={White}
+        />
 
         <XAxis
           dataKey='date_label'
