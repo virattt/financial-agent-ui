@@ -74,3 +74,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+.stock-tooltip {
+  border-radius: 0.25rem;
+  background: #fff;
+  //color: #C4;
+  padding: 0.5rem;
+  box-shadow: 15px 30px 40px 5px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
