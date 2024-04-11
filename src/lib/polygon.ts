@@ -3,6 +3,7 @@ import { StockData } from "@/components/llm/chart";
 import { restClient } from "@polygon.io/client-js";
 
 import axios from "axios";
+
 const rest = restClient(process.env.POLYGON_API_KEY);
 const POLYGON_BASE_URL = "https://api.polygon.io/";
 
@@ -18,6 +19,7 @@ async function getFinancials(ticker: string) {
 
   return data.results;
 }
+
 async function getNews(ticker: string) {
   try {
     const data = await rest.reference.tickerNews({ ticker: ticker });
