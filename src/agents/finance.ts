@@ -9,7 +9,7 @@ import { AgentExecutor, createOpenAIToolsAgent } from "langchain/agents";
 import { tools } from "@/components/llm/tools";
 
 const llm = new ChatOpenAI({
-  modelName: "gpt-4-turbo-preview",
+  modelName: "gpt-4-turbo",
   temperature: 0.1,
 });
 
