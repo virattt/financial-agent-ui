@@ -6,53 +6,13 @@ import { Message } from "@/app/action";
 
 import { ChatPromptTemplate, MessagesPlaceholder, } from "@langchain/core/prompts";
 import { AgentExecutor, createOpenAIToolsAgent } from "langchain/agents";
-import { z } from "zod";
-import { DynamicStructuredTool } from "@langchain/core/tools";
-import { getAggregates, getFinancials, getNews } from "@/lib/polygon";
+import { tools } from "@/components/llm/tools/tools";
 
 const llm = new ChatOpenAI({
   modelName: "gpt-4-turbo-preview",
   temperature: 0.1,
 });
 
-const tools = [
-  new DynamicStructuredTool({
-    name: "getFinancials",
-    description: "Retrieves financial data for a given stock ticker.",
-    schema: z.object({
-      ticker: z.string().describe("The stock ticker symbol"),
-    }),
-    func: async ({ ticker }) => {
-      const data = await getFinancials(ticker);
-      return JSON.stringify(data);
-    },
-  }),
-  new DynamicStructuredTool({
-    name: "getNews",
-    description: "Retrieves news articles for a given stock ticker. Use this information to answer concisely",
-    schema: z.object({
-      ticker: z.string().describe("The stock ticker symbol"),
-    }),
-    func: async ({ ticker }) => {
-      const data = await getNews(ticker);
-      return JSON.stringify(data);
-    },
-  }),
-
-  new DynamicStructuredTool({
-    name: "getStockPriceHistory",
-    description: "Retrieves historical stock price data for a given stock ticker over a specified time period.",
-    schema: z.object({
-      ticker: z.string().describe("The stock ticker symbol"),
-      from: z.string().describe("The start date for the stock price data"),
-      to: z.string().describe("The end date for the stock price data"),
-    }),
-    func: async ({ ticker, from, to }) => {
-      const data = await getAggregates(ticker, from, to);
-      return JSON.stringify(data);
-    },
-  }),
-];
 const systemPrompt = `
 You are a highly capable financial assistant named FinanceGPT. Your purpose is to provide insightful and concise analysis to help users make informed financial decisions.
 
