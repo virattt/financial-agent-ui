@@ -44,14 +44,6 @@ export async function runAgent(messages: BaseMessage[]) {
   return eventStream;
 }
 
-const chatModel = new ChatOpenAI({});
-const outputParser = new BytesOutputParser();
-
-export const chain = RunnableSequence.from([
-  new ChatOpenAI({ temperature: 0 }),
-  new BytesOutputParser(),
-]);
-
 // converts to langchain messages: system, ai, human, tool
 export const convertMessages = (messages: Message[]) => {
   return messages.map((message) => {
