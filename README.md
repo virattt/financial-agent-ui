@@ -10,19 +10,22 @@ In addition, we use Polygon's [Stocks API](https://polygon.io/docs/stocks) to ge
 [![Twitter Follow](https://img.shields.io/twitter/follow/virattt?style=social)](https://twitter.com/virattt)
 
 ## Getting Started
+![Screenshot 2024-06-05 at 9.22.31 PM.png](..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2F69%2F8731453s70gfr_rqx65n8vqm0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_OuzHAd%2FScreenshot%202024-06-05%20at%209.22.31%20PM.png)
 
-You'll need a polygon API key and openai api key
+1. Download the repo locally:
+    ```
+    git clone https://github.com/virattt/financial-agent-ui.git
+    ```
 
-```
-OPENAI_API_KEY=
-POLYGON_API_KEY=
-```
+2. Install dependencies:
+    ```
+    npm install
+    ```
 
-Install with npm or pnpm
-`pnpm i`
-
-Then
-`pnpm dev`
+3. Run the app:
+    ```
+    npm dev
+    ```
 
 ## Disclaimer
 
