@@ -10,7 +10,7 @@ In addition, we use Polygon's [Stocks API](https://polygon.io/docs/stocks) to ge
 [![Twitter Follow](https://img.shields.io/twitter/follow/virattt?style=social)](https://twitter.com/virattt)
 
 ## Getting Started 🚀
-![Screenshot 2024-06-05 at 9 23 57 PM](https://github.com/virattt/financial-agent-ui/assets/901795/eb93b719-ad5f-43a7-a0f8-7ed3431f6eeb)
+![Screenshot 2024-06-05 at 9 27 43 PM](https://github.com/virattt/financial-agent-ui/assets/901795/4d93823f-d795-4aff-ac9e-93053087bed9)
 
 1. Download the repo locally:
     ```
