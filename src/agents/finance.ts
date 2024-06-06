@@ -29,8 +29,7 @@ const tools = [
   }),
   new DynamicStructuredTool({
     name: "getNews",
-    description:
-      "Retrieves news articles for a given stock ticker. Use this information to answer concisely",
+    description: "Retrieves news articles for a given stock ticker. Use this information to answer concisely",
     schema: z.object({
       ticker: z.string().describe("The stock ticker symbol"),
     }),
@@ -42,8 +41,7 @@ const tools = [
 
   new DynamicStructuredTool({
     name: "getStockPriceHistory",
-    description:
-      "Retrieves historical stock price data for a given stock ticker over a specified time period.",
+    description: "Retrieves historical stock price data for a given stock ticker over a specified time period.",
     schema: z.object({
       ticker: z.string().describe("The stock ticker symbol"),
       from: z.string().describe("The start date for the stock price data"),
