@@ -31,7 +31,7 @@ In addition, we use Polygon's [Stocks API](https://polygon.io/docs/stocks) to ge
 
 The goal of this application is **only** to explore generative AI and UI.
 
-This finance agent is **not intended as financial advice**. It is designed to provide users with tools and information
+This financial agent is **not intended as financial advice**. It is designed to provide users with tools and information
 to explore technical concepts with respect to generative AI only. Users should conduct their own research or consult
 with a financial advisor before making any financial decisions.
 
