@@ -1,5 +1,5 @@
 "use server";
-import { StockData } from "@/components/llm/chart";
+import { StockData } from "@/components/ui/chart";
 import { restClient } from "@polygon.io/client-js";
 
 import axios from "axios";

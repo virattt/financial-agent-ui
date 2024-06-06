@@ -1,6 +1,6 @@
 import React from "react";
 import { Green, Pink } from "@/styles/colors";
-import { StockData } from "@/components/llm/Chart";
+import { StockData } from "@/components/ui/chart";
 
 interface StockChartHeaderProps {
   stockData: StockData;

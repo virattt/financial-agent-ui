@@ -7,7 +7,7 @@ import { convertMessages, runAgent } from "@/agents/finance";
 import { FunctionToolCall, } from "openai/resources/beta/threads/runs/steps.mjs";
 
 import { NewsCarousel } from "@/components/llm/news";
-import { Chart } from "@/components/llm/Chart";
+import { Chart } from "@/components/ui/chart";
 import FunctionCallBadge from "@/components/llm/fcall";
 import { Financials } from "@/components/llm/financials";
 

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import { StockChart } from "@/components/llm/StockChart";
-import { StockChartHeader } from "@/components/llm/StockChartHeader";
+import { StockChart } from "@/components/ui/stock-chart";
+import { StockChartHeader } from "@/components/ui/stock-chart-header";
 
 export interface StockData {
   ticker: string;
