@@ -1,6 +1,6 @@
 ## Welcome 👋
 
-This is a generative UI financial agent chat application.
+This is a generative UI financial agent.
 
 We use Vercel's AI [SDK](https://sdk.vercel.ai/docs/introduction) and
 LangChain [agents](https://python.langchain.com/v0.1/docs/modules/agents/) to dynamically answer and render UI.
