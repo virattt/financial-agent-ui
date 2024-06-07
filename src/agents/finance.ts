@@ -4,7 +4,7 @@ import { Message } from "@/app/action";
 
 import { ChatPromptTemplate, MessagesPlaceholder, } from "@langchain/core/prompts";
 import { AgentExecutor, createOpenAIToolsAgent } from "langchain/agents";
-import { tools } from "@/components/llm/tools";
+import { tools } from "@/agents/tools";
 
 const llm = new ChatOpenAI({
   modelName: "gpt-4-turbo",
