@@ -119,12 +119,6 @@ export type UIState = {
   display: React.ReactNode;
 }[];
 
-// The initial UI state that the client will keep track of, which contains the message IDs and their UI nodes.
-const initialUIState: {
-  id: number;
-  display: React.ReactNode;
-}[] = [];
-
 // AI is a provider you wrap your application with so you can access AI and UI state in your components.
 export const AI = createAI<AIState, UIState>({
   actions: {
