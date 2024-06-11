@@ -39,9 +39,7 @@ async function getAggregates(ticker: string, from: string, to: string) {
   try {
     const url = `${POLYGON_BASE_URL}v2/aggs/ticker/${ticker}/range/1/day/${from}/${to}?adjusted=true&sort=asc&limit=25&apiKey=${process.env.POLYGON_API_KEY}`;
     const response = await axios.get<StockData>(url);
-    const data = response.data;
-
-    return data;
+    return response.data;
   } catch (e) {
     console.error("An error occurred while fetching the last quote:", e);
     throw e;
