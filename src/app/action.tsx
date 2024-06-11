@@ -10,6 +10,7 @@ import { NewsCarousel } from "@/components/llm/news";
 import { Chart } from "@/components/ui/chart";
 import FunctionCallBadge from "@/components/llm/fcall";
 import { Financials } from "@/components/llm/financials";
+import { StockPrice } from "@/components/ui/stock-price";
 
 async function submitUserMessage(content: string) {
   "use server";
@@ -64,6 +65,8 @@ async function submitUserMessage(content: string) {
         toolNode = <NewsCarousel articles={parsedOutput}/>;
       } else if (event.name === "getStockPriceHistory") {
         toolNode = <Chart stockData={parsedOutput}/>;
+      } else if (event.name === "getLatestPrice") {
+        toolNode = <StockPrice stockPriceData={parsedOutput}/>;
       } else {
         toolNode = <Financials data={parsedOutput}/>;
       }

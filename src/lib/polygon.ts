@@ -46,4 +46,15 @@ async function getAggregates(ticker: string, from: string, to: string) {
   }
 }
 
-export { getFinancials, getNews, getAggregates };
+async function getTickerSnapshot(ticker: string) {
+  try {
+    const url = `${POLYGON_BASE_URL}v2/snapshot/locale/us/markets/stocks/tickers/${ticker}?apiKey=${process.env.POLYGON_API_KEY}`;
+    const response = await axios.get<StockData>(url);
+    return response.data;
+  } catch (e) {
+    console.error("An error occurred while fetching the last quote:", e);
+    throw e;
+  }
+}
+
+export { getFinancials, getNews, getAggregates, getTickerSnapshot };

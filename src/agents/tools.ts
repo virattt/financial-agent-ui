@@ -1,6 +1,6 @@
 import { DynamicStructuredTool } from "@langchain/core/tools";
 import { z } from "zod";
-import { getAggregates, getFinancials, getNews } from "@/lib/polygon";
+import { getAggregates, getFinancials, getNews, getTickerSnapshot } from "@/lib/polygon";
 
 export const tools = [
   new DynamicStructuredTool({
@@ -36,6 +36,18 @@ export const tools = [
     }),
     func: async ({ ticker, from, to }) => {
       const data = await getAggregates(ticker, from, to);
+      return JSON.stringify(data);
+    },
+  }),
+
+  new DynamicStructuredTool({
+    name: "getLatestPrice",
+    description: "Retrieves the latest price for a given stock ticker.",
+    schema: z.object({
+      ticker: z.string().describe("The stock ticker symbol"),
+    }),
+    func: async ({ ticker}) => {
+      const data = await getTickerSnapshot(ticker);
       return JSON.stringify(data);
     },
   }),
