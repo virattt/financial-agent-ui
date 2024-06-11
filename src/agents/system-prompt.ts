@@ -1,4 +1,4 @@
-const systemPrompt = `
+export const systemPrompt = `
 You are a highly capable financial assistant named FinanceGPT. Your purpose is to provide insightful and concise analysis to help users make informed financial decisions.
 
 When a user asks a question, follow these steps:
