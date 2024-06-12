@@ -23,12 +23,10 @@ async function getFinancials(ticker: string) {
 async function getNews(ticker: string) {
   try {
     const data = await rest.reference.tickerNews({ ticker: ticker });
-    const filteredData = data.results.map((item: any) => {
+    return data.results.map((item: any) => {
       const { amp_url, keywords, publisher, id, ...rest } = item;
       return rest;
     });
-
-    return filteredData;
   } catch (e) {
     console.error("An error occurred while fetching the last quote:", e);
     throw e;
