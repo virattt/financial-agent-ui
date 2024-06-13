@@ -12,8 +12,7 @@ async function getFinancials(ticker: string) {
   const response = await axios.get(url);
   const data = response.data;
 
-  const status = data.status;
-  if (status !== "OK") {
+  if (data.status !== "OK") {
     throw new Error(`API Error: ${JSON.stringify(data)}`);
   }
 
