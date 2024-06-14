@@ -3,6 +3,8 @@
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel";
+import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
 
 interface Article {
   title: string;
@@ -11,6 +13,7 @@ interface Article {
   article_url: string;
   image_url: string;
   description: string;
+  tickers: string[];
 }
 
 export function NewsCarousel({ articles }: { articles: Article[] }) {
@@ -37,8 +40,15 @@ export function NewsCarousel({ articles }: { articles: Article[] }) {
                   {article.description}
                 </p>
               </CardContent>
+              <CardFooter className="flex gap-2">
+                {article.tickers.slice(0, 4).map((tickerName: string, index: number) => (
+                  <Badge key={index}>{tickerName}</Badge>
+                ))}
+              </CardFooter>
               <CardFooter className="flex justify-between">
-                <Button variant="outline">Read more</Button>
+                <Link href={article.article_url} rel="noopener noreferrer" target="_blank">
+                  <Button variant="outline">Read more</Button>
+                </Link>
                 <span className="text-sm">
                   {new Date(article.published_utc).toLocaleDateString()}
                 </span>
@@ -47,8 +57,8 @@ export function NewsCarousel({ articles }: { articles: Article[] }) {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious/>
-      <CarouselNext/>
+      <CarouselPrevious />
+      <CarouselNext />
     </Carousel>
   );
 }
