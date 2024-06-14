@@ -13,7 +13,7 @@ interface Article {
   article_url: string;
   image_url: string;
   description: string;
-  tickers: Array[number];
+  tickers: string[];
 }
 
 export function NewsCarousel({ articles }: { articles: Article[] }) {
