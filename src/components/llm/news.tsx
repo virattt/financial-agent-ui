@@ -41,7 +41,7 @@ export function NewsCarousel({ articles }: { articles: Article[] }) {
                 </p>
               </CardContent>
               <CardFooter className="flex gap-2">
-                {article.tickers.slice(0, 4).map((tickerName: string, index) => (
+                {article.tickers.slice(0, 4).map((tickerName: string, index: number) => (
                   <Badge key={index}>{tickerName}</Badge>
                 ))}
               </CardFooter>
