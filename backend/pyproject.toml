@@ -1,0 +1,98 @@
+[tool.poetry]
+name = "gen-ui-backend"
+version = "0.1.0"
+description = ""
+authors = []
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "<3.12,>=3.9.0"
+langchain-core = "^0.2.7"
+typer = "^0.12.3"
+langchain = "^0.2.5"
+langchain-openai = "^0.1.8"
+pymongo = "^4.7.3"
+python-dotenv = "^1.0.1"
+motor = "^3.4.0"
+langgraph = "^0.0.69"
+langserve = { version = "^0.2.2", extras = ["all"] }
+fastapi = "^0.111.0"
+uvicorn = "^0.30.1"
+pydantic = "^2.7.4"
+rich = "^13.7.1"
+langchain-community = "^0.2.5"
+unstructured = {extras = ["all-docs"], version = "^0.13.4"}
+
+[tool.poetry.scripts]
+start = "gen_ui_backend.server:start"
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.3.0"
+freezegun = "^1.2.2"
+pytest-mock = "^3.10.0"
+syrupy = "^4.0.2"
+pytest-watcher = "^0.3.4"
+pytest-asyncio = "^0.21.1"
+
+
+[tool.poetry.group.codespell]
+optional = true
+
+[tool.poetry.group.codespell.dependencies]
+codespell = "^2.2.0"
+
+[tool.poetry.group.lint]
+optional = true
+
+[tool.poetry.group.lint.dependencies]
+ruff = "^0.1.5"
+
+[tool.poetry.group.typing.dependencies]
+mypy = "^1"
+
+[tool.poetry.group.test_integration]
+optional = true
+
+[tool.poetry.group.test_integration.dependencies]
+
+[tool.ruff]
+select = [
+  "E", # pycodestyle
+  "F", # pyflakes
+  "I", # isort
+]
+ignore = ["E501"]
+
+[tool.mypy]
+disallow_untyped_defs = "True"
+
+[tool.coverage.run]
+omit = ["tests/*"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+# --strict-markers will raise errors on unknown marks.
+# https://docs.pytest.org/en/7.1.x/how-to/mark.html#raising-errors-on-unknown-marks
+#
+# https://docs.pytest.org/en/7.1.x/reference/reference.html
+# --strict-config       any warnings encountered while parsing the `pytest`
+#                       section of the configuration file raise errors.
+#
+# https://github.com/tophat/syrupy
+# --snapshot-warn-unused    Prints a warning on unused snapshots rather than fail the test suite.
+addopts = "--snapshot-warn-unused --strict-markers --strict-config --durations=5"
+# Registering custom markers.
+# https://docs.pytest.org/en/7.1.x/example/markers.html#registering-markers
+markers = [
+  "requires: mark tests as requiring a specific library",
+  "asyncio: mark tests as requiring asyncio",
+  "compile: mark placeholder test used to compile integration tests without running them",
+]
+asyncio_mode = "auto"
