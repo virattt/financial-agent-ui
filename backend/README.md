@@ -28,5 +28,9 @@ python -m gen_ui_backend.server
 ```
 
 4. If successful, you should see something like this:
+   ![Screenshot 2024-06-17 at 7 19 50 PM](https://github.com/virattt/financial-agent-ui/assets/901795/75d8292b-0d1f-4198-8a23-3e685bb4327f)
 
-5. Navigate to localhost:8000/docs in your browser to see the API docs! 
+
+5. Navigate to localhost:8000/docs in your browser to see the API docs!
+   ![Screenshot 2024-06-17 at 7 21 18 PM](https://github.com/virattt/financial-agent-ui/assets/901795/ddad5a43-2338-454b-b4ed-cf0b5dbdf1ee)
+
