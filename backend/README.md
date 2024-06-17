@@ -4,8 +4,6 @@ This is the backend server for the generative UI financial agent.
 
 ## Getting Started 🚀
 
-Make sure that you have an OpenAI and Polygon API key.
-
 0. Navigate to this backend directory:
    
    ```
