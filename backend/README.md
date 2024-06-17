@@ -5,7 +5,7 @@ This is the backend server for the generative UI financial agent.
 ## Getting Started 🚀
 1. Navigate to this backend directory:
 ```
-cd backend/
+cd financial-agent-ui/backend
 ```
 2a. Install dependencies (if using poetry):
 ```
