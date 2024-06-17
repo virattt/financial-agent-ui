@@ -43,3 +43,5 @@ package-lock.json
 .mypy_cache
 
 *venv*
+
+*__pycache__*
