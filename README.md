@@ -27,21 +27,13 @@ Make sure that you have an OpenAI and Polygon API key.
    POLYGON_API_KEY=YOUR_POLYGON_API_KEY    # Get one at https://polygon.io
    ```
 
-3. Install dependencies:
-   ```
-   cd frontend/
-   ```
-   then:
-   ```
-   npm install
-   ```
+3. Install the `backend` server:
 
-4. Run the app:
-    ```
-    npm dev
-    ```
+- Instructions [here](https://github.com/virattt/financial-agent-ui/blob/main/backend/README.md)
 
-5. Chat with the agent!
+4. Install the `frontend` app:
+
+- Instructions [here](https://github.com/virattt/financial-agent-ui/blob/main/frontend/README.md)
 
 ## Disclaimer 🛑
 
