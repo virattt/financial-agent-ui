@@ -8,10 +8,10 @@ from langchain_openai import ChatOpenAI
 from langgraph.graph import END, StateGraph
 from langgraph.graph.graph import CompiledGraph
 
-from backend.gen_ui_backend.tools.financials import get_financials
-from backend.gen_ui_backend.tools.last_quote import get_last_quote
-from backend.gen_ui_backend.tools.prices import get_prices
-from backend.gen_ui_backend.tools.ticker_news import get_ticker_news
+from .tools.financials import get_financials
+from .tools.last_quote import get_last_quote
+from .tools.prices import get_prices
+from .tools.ticker_news import get_ticker_news
 
 
 class GenerativeUIState(TypedDict, total=False):
