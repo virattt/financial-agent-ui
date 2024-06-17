@@ -8,9 +8,10 @@ from langchain_openai import ChatOpenAI
 from langgraph.graph import END, StateGraph
 from langgraph.graph.graph import CompiledGraph
 
-from backend.gen_ui_backend.tools.github import github_repo
-from backend.gen_ui_backend.tools.invoice import invoice_parser
-from backend.gen_ui_backend.tools.weather import weather_data
+from backend.gen_ui_backend.tools.financials import get_financials
+from backend.gen_ui_backend.tools.last_quote import get_last_quote
+from backend.gen_ui_backend.tools.prices import get_prices
+from backend.gen_ui_backend.tools.ticker_news import get_ticker_news
 
 
 class GenerativeUIState(TypedDict, total=False):
@@ -36,7 +37,7 @@ def invoke_model(state: GenerativeUIState, config: RunnableConfig) -> Generative
         ]
     )
     model = ChatOpenAI(model="gpt-4o", temperature=0, streaming=True)
-    tools = [github_repo, invoice_parser, weather_data]
+    tools = [get_last_quote, get_prices, get_financials, get_ticker_news]
     model_with_tools = model.bind_tools(tools)
     chain = initial_prompt | model_with_tools
     result = chain.invoke({"input": state["input"]}, config)
@@ -62,9 +63,10 @@ def invoke_tools_or_return(state: GenerativeUIState) -> str:
 
 def invoke_tools(state: GenerativeUIState) -> GenerativeUIState:
     tools_map = {
-        "github-repo": github_repo,
-        "invoice-parser": invoice_parser,
-        "weather-data": weather_data,
+        "get-last-quote": get_last_quote,
+        "get-prices": get_prices,
+        "get-financials": get_financials,
+        "get-ticker-news": get_ticker_news,
     }
 
     if state["tool_calls"] is not None:
