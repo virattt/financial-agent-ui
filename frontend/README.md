@@ -29,10 +29,6 @@ Make sure that you have an OpenAI and Polygon API key.
 
 3. Install dependencies:
    ```
-   cd frontend/
-   ```
-   then:
-   ```
    npm install
    ```
 
