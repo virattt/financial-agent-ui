@@ -12,7 +12,7 @@ import {
 import { createStreamableUI, createStreamableValue } from "ai/rsc";
 import { AIMessage } from "@/ai/message";
 
-const API_URL = "http://0.0.0.0:8000/chat";
+const API_URL = "http://localhost:8000/chat";
 
 type ToolComponent = {
   loading: (props?: any) => JSX.Element;

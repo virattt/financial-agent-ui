@@ -38,7 +38,7 @@ def start() -> None:
 
     add_routes(app, runnable, path="/chat", playground_type="chat")
     print("Starting server...")
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="localhost", port=8000)
 
 
 if __name__ == "__main__":
