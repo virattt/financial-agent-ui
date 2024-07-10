@@ -19,12 +19,12 @@ This is the frontend app for the generative UI financial agent.
 
 3. Install dependencies:
    ```
-   npm install
+   yarn install
    ```
 
 4. Run the app:
     ```
-    npm dev
+    yarn dev
     ```
 
 5. Chat with the agent!
