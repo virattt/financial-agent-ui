@@ -28,4 +28,5 @@ This is the frontend app for the generative UI financial agent.
     ```
 
 5. Chat with the agent!
-![Screenshot 2024-06-05 at 9 27 43 PM](https://github.com/virattt/financial-agent-ui/assets/901795/4d93823f-d795-4aff-ac9e-93053087bed9)
+<img width="1219" alt="Screenshot 2024-07-10 at 7 23 11 PM" src="https://github.com/virattt/financial-agent-ui/assets/901795/43cc07a9-db70-421c-a70d-870d0c8c7848">
+``

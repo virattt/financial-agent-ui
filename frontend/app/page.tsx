@@ -11,8 +11,9 @@ export default function Home() {
             target="_blank"
             className="text-blue-600 hover:underline hover:underline-offset-2"
           >
-            Financial Agent
+            Financial Agent {" "}
           </a>
+          with LangChain 🦜🔗
         </p>
         <Chat />
       </div>

@@ -3,14 +3,10 @@ import { exposeEndpoints, streamRunnableUI } from "@/utils/server";
 import "server-only";
 import { StreamEvent } from "@langchain/core/tracers/log_stream";
 import { EventHandlerFields } from "@/utils/server";
-import { Github, GithubLoading } from "@/components/prebuilt/github";
-import { InvoiceLoading, Invoice } from "@/components/prebuilt/invoice";
-import {
-  CurrentWeatherLoading,
-  CurrentWeather,
-} from "@/components/prebuilt/weather";
+import { GithubLoading } from "@/components/prebuilt/github";
 import { createStreamableUI, createStreamableValue } from "ai/rsc";
 import { AIMessage } from "@/ai/message";
+import { ChartContainer } from "@/components/prebuilt/chart-container";
 
 const API_URL = "http://localhost:8000/chat";
 
@@ -24,9 +20,9 @@ type ToolComponentMap = {
 };
 
 const TOOL_COMPONENT_MAP: ToolComponentMap = {
-  "get-ticker-news": {
+  "get-prices": {
     loading: (props?: any) => <GithubLoading {...props} />,
-    final: (props?: any) => <Github {...props} />,
+    final: (props?: any) => <ChartContainer {...props} />,
   },
   // "invoice-parser": {
   //   loading: (props?: any) => <InvoiceLoading {...props} />,
@@ -131,7 +127,7 @@ async function agent(inputs: {
       return;
     if (!fields.callbacks[event.run_id]) {
       const textStream = createStreamableValue();
-      fields.ui.append(<AIMessage value={textStream.value} />);
+      fields.ui.append(<AIMessage value={textStream.value}/>);
       fields.callbacks[event.run_id] = textStream;
     }
 

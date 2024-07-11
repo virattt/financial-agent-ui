@@ -1,0 +1,17 @@
+export const Primary = "#2C3E50"
+export const AmnesiaBlue = "#185ABC"
+export const Blue = "#2196f3"
+export const ElectricViolet = "#8F00FF"
+export const Green = "#18BC9C"
+export const Gold = "#FFB302"
+export const Pink = "#E63B5D"
+export const Black = "#000000"
+export const BlackGray = "#121212"
+export const DarkCharcoal = "#333333"
+export const DarkLiver = "#4F4F4F"
+export const Gray = "#808080"
+export const Silver = "#C4C4C4"
+export const White = "#FFFFFF"
+
+// Hover colors
+export const GreenHover = "#0f7864"

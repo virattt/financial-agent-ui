@@ -26,13 +26,13 @@ def get_prices(ticker: str, from_date: str, to_date: str) -> Union[Dict, str]:
         raise ValueError("Missing POLYGON_API_KEY secret.")
 
     url = (
-        f"${POLYGON_BASE_URL}v2/aggs/ticker/"
-        f"${ticker}/range/1/"
-        f"day/${from_date}/${to_date}"
+        f"{POLYGON_BASE_URL}v2/aggs/ticker/"
+        f"{ticker}/range/1/"
+        f"day/{from_date}/{to_date}"
         f"?adjusted=true"
         f"&sort=asc"
         f"&limit=25"
-        f"&apiKey=${api_key}"
+        f"&apiKey={api_key}"
     )
     response = requests.get(url)
     data = response.json()
@@ -41,4 +41,4 @@ def get_prices(ticker: str, from_date: str, to_date: str) -> Union[Dict, str]:
     if status != "OK":
         raise ValueError(f"API Error: {data}")
 
-    return data.get("results", None)
+    return data
