@@ -2,10 +2,9 @@ import { RemoteRunnable } from "@langchain/core/runnables/remote";
 import { EventHandlerFields, exposeEndpoints, streamRunnableUI } from "@/utils/server";
 import "server-only";
 import { StreamEvent } from "@langchain/core/tracers/log_stream";
-import { GithubLoading } from "@/components/prebuilt/github";
 import { createStreamableUI, createStreamableValue } from "ai/rsc";
 import { AIMessage } from "@/ai/message";
-import { ChartContainer } from "@/components/prebuilt/chart-container";
+import { ChartContainer, ChartLoading } from "@/components/prebuilt/chart-container";
 import React from "react";
 
 const API_URL = "http://localhost:8000/chat";
@@ -21,7 +20,7 @@ type ToolComponentMap = {
 
 const TOOL_COMPONENT_MAP: ToolComponentMap = {
   "get-prices": {
-    loading: (props?: any) => <GithubLoading {...props} />,
+    loading: (props?: any) => <ChartLoading {...props} />,
     final: (props?: any) => <ChartContainer {...props} />,
   },
   // "invoice-parser": {
