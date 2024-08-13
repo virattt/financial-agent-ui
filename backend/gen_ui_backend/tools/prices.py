@@ -48,8 +48,7 @@ def get_prices(ticker: str, start_date: str, end_date: str, interval: str, inter
     )
 
     try:
-        headers = {'X-API-Key': api_key}
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers={'X-API-Key': api_key})
         data = response.json()
         return data
     except Exception as e:
