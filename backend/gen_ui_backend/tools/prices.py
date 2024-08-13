@@ -49,7 +49,9 @@ def get_prices(ticker: str, start_date: str, end_date: str, interval: str, inter
         f"&limit={limit}"
     )
 
-    response = requests.get(url, headers=headers)
-    data = response.json()
-
-    return data
+    try:
+        response = requests.get(url, headers=headers)
+        data = response.json()
+        return data
+    except Exception as e:
+        return {"ticker": ticker, "prices": [], "error": str(e)}
