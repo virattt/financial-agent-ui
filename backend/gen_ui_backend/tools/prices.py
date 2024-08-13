@@ -37,8 +37,6 @@ def get_prices(ticker: str, start_date: str, end_date: str, interval: str, inter
     if not api_key:
         raise ValueError("Missing FINANCIAL_DATASETS_API_KEY.")
 
-    headers = {'X-API-Key': api_key}
-
     url = (
         f"{BASE_URL}prices"
         f"?ticker={ticker}"
@@ -50,6 +48,7 @@ def get_prices(ticker: str, start_date: str, end_date: str, interval: str, inter
     )
 
     try:
+        headers = {'X-API-Key': api_key}
         response = requests.get(url, headers=headers)
         data = response.json()
         return data
