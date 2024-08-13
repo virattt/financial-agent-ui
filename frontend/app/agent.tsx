@@ -1,18 +1,18 @@
 import { RemoteRunnable } from "@langchain/core/runnables/remote";
-import { exposeEndpoints, streamRunnableUI } from "@/utils/server";
+import { EventHandlerFields, exposeEndpoints, streamRunnableUI } from "@/utils/server";
 import "server-only";
 import { StreamEvent } from "@langchain/core/tracers/log_stream";
-import { EventHandlerFields } from "@/utils/server";
 import { GithubLoading } from "@/components/prebuilt/github";
 import { createStreamableUI, createStreamableValue } from "ai/rsc";
 import { AIMessage } from "@/ai/message";
 import { ChartContainer } from "@/components/prebuilt/chart-container";
+import React from "react";
 
 const API_URL = "http://localhost:8000/chat";
 
 type ToolComponent = {
-  loading: (props?: any) => JSX.Element;
-  final: (props?: any) => JSX.Element;
+  loading: (props?: any) => React.JSX.Element;
+  final: (props?: any) => React.JSX.Element;
 };
 
 type ToolComponentMap = {

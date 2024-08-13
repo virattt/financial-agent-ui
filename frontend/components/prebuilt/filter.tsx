@@ -1,13 +1,14 @@
 "use client";
 
 import { startCase } from "lodash";
+import React from "react";
 
 export interface FilterButtonProps {
   filterKey: string;
   filterValue: string | number;
 }
 
-export function FilterButton(props: FilterButtonProps): JSX.Element {
+export function FilterButton(props: FilterButtonProps): React.JSX.Element {
   return (
     <div className="p-2 min-w-[100px] rounded-md border-[0.5px] border-gray-400 flex flex-row items-start justify-center gap-[2px]">
       <p className="font-medium text-sm text-gray-700">

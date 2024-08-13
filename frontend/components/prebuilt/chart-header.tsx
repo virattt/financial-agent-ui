@@ -10,8 +10,8 @@ export const ChartHeader: React.FC<Props> = ({
   ticker, prices,
 }) => {
   // Compute percent and dollar difference between end price and start price
-  const startPrice = prices[0].c;
-  const endPrice = prices[prices.length - 1].c;
+  const startPrice = prices[0].close;
+  const endPrice = prices[prices.length - 1].close;
   const percentDifference = ((endPrice - startPrice) / startPrice) * 100;
   const dollarDifference = endPrice - startPrice;
 
@@ -21,7 +21,7 @@ export const ChartHeader: React.FC<Props> = ({
         {ticker}
       </div>
       <div style={{ fontSize: "24px", fontWeight: "bold" }}>
-        ${prices[prices.length - 1].c.toFixed(2)}
+        ${prices[prices.length - 1].close.toFixed(2)}
       </div>
       <div style={{ fontSize: "12px", fontWeight: "bold", display: "flex" }}>
         <div style={{ marginRight: "8px" }}>

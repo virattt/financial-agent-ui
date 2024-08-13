@@ -1,21 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { EndpointsContext } from "@/app/agent";
 import { useActions } from "@/utils/client";
 import { LocalContext } from "@/app/shared";
-import { RemoteRunnable } from "@langchain/core/runnables/remote";
-import { Github, GithubLoading } from "./github";
-import { Invoice, InvoiceLoading } from "./invoice";
-import { CurrentWeather, CurrentWeatherLoading } from "./weather";
-import { createStreamableUI, createStreamableValue } from "ai/rsc";
-import { StreamEvent } from "@langchain/core/tracers/log_stream";
-import { AIMessage } from "@/ai/message";
 import { HumanMessageText } from "./message";
-
-export interface ChatProps {}
 
 function convertFileToBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -42,7 +33,7 @@ function FileUploadMessage({ file }: { file: File }) {
 export default function Chat() {
   const actions = useActions<typeof EndpointsContext>();
 
-  const [elements, setElements] = useState<JSX.Element[]>([]);
+  const [elements, setElements] = useState<React.JSX.Element[]>([]);
   const [history, setHistory] = useState<[role: string, content: string][]>([]);
   const [input, setInput] = useState("");
   const [selectedFile, setSelectedFile] = useState<File>();
@@ -60,16 +51,16 @@ export default function Chat() {
       file:
         base64File && fileExtension
           ? {
-              base64: base64File,
-              extension: fileExtension,
-            }
+            base64: base64File,
+            extension: fileExtension,
+          }
           : undefined,
     });
 
     newElements.push(
       <div className="flex flex-col w-full gap-1 mt-auto" key={history.length}>
-        {selectedFile && <FileUploadMessage file={selectedFile} />}
-        <HumanMessageText content={input} />
+        {selectedFile && <FileUploadMessage file={selectedFile}/>}
+        <HumanMessageText content={input}/>
         <div className="flex flex-col gap-1 w-full max-w-fit mr-auto">
           {element.ui}
         </div>

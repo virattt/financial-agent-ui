@@ -2,38 +2,31 @@
 import React from "react";
 import { Chart } from "@/components/prebuilt/chart";
 import { ChartHeader } from "@/components/prebuilt/chart-header";
-import { DemoGithubProps } from "@/components/prebuilt/github";
 
 export interface ChartData {
   ticker: string;
-  queryCount: number;
-  resultsCount: number;
-  adjusted: boolean;
-  results: PriceData[];
-  count: number;
+  prices: PriceData[];
 }
-
 export interface PriceData {
-  v: number;  // volume
-  vw: number; // volume weighted average price
-  o: number;  // open
-  c: number;  // close
-  h: number;  // high
-  l: number;  // low
-  t: number;  // timestamp
-  n: number;  // number of trades
+  open: number;
+  close: number;
+  high: number;
+  low: number;
+  volume: number;
+  time: string;
+  time_milliseconds: number;
 }
 
 
-export function ChartContainer(props: ChartData): JSX.Element {
+export function ChartContainer(props: ChartData): React.JSX.Element {
   return (
     <div style={{minWidth: "750px"}}>
-      <ChartHeader ticker={props.ticker} prices={props.results}/>
+      <ChartHeader ticker={props.ticker} prices={props.prices}/>
       <Chart
-        data={props.results.map((result) => {
+        data={props.prices.map((price) => {
           return ({
-            date: formatDate(result.t),
-            value: result.c,
+            date: formatDate(price.time_milliseconds),
+            value: price.close,
           });
         })}
       />

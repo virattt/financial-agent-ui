@@ -2,30 +2,15 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  BarChart,
-  BarChartProps,
-  LineChart,
-  LineChartProps,
-  PieChart,
-  PieChartProps,
-} from "@/lib/mui";
-import { Suspense, useEffect, useState } from "react";
+import { BarChart, BarChartProps, LineChart, LineChartProps, PieChart, PieChartProps, } from "@/lib/mui";
+import React, { Suspense, useEffect, useState } from "react";
 import { useActions } from "@/utils/client";
 import { EndpointsContext } from "./agent";
-import { Filter, Order, filterSchema } from "./schema";
+import { Filter, filterSchema, Order } from "./schema";
 import { LocalContext } from "../shared";
 import { generateOrders } from "./generate-orders";
-import {
-  ChartType,
-  DISPLAY_FORMATS,
-  constructProductSalesBarChartProps,
-  constructOrderStatusDistributionPieChartProps,
-  constructOrderAmountOverTimeLineChartProps,
-  DataDisplayTypeAndDescription,
-} from "./filters";
-import { useSearchParams, useRouter } from "next/navigation";
-import { filterOrders } from "./filters";
+import { ChartType, DataDisplayTypeAndDescription, DISPLAY_FORMATS, filterOrders, } from "./filters";
+import { useRouter, useSearchParams } from "next/navigation";
 import { snakeCase } from "lodash";
 import { DisplayTypesDialog } from "@/components/prebuilt/display-types-dialog";
 import { FilterOptionsDialog } from "@/components/prebuilt/filter-options-dialog";
@@ -103,7 +88,7 @@ function SmartFilter(props: SmartFilterProps) {
     }
     return (
       <span className="flex flex-row gap-1 items-center">
-        Submit <SparklesIcon />
+        Submit <SparklesIcon/>
       </span>
     );
   };
@@ -117,7 +102,7 @@ function SmartFilter(props: SmartFilterProps) {
         placeholder="Magic filter"
       />
       <Button disabled={props.loading} type="submit" variant="outline">
-        <ButtonContent />
+        <ButtonContent/>
       </Button>
     </form>
   );
@@ -129,7 +114,7 @@ function ChartContent() {
   const { push } = useRouter();
 
   const [loading, setLoading] = useState(false);
-  const [elements, setElements] = useState<JSX.Element[]>([]);
+  const [elements, setElements] = useState<React.JSX.Element[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
   const [selectedFilters, setSelectedFilters] = useState<Partial<Filter>>();
   const [selectedChartType, setSelectedChartType] = useState<ChartType>("bar");
@@ -336,10 +321,10 @@ function ChartContent() {
     <div className="min-w-[80vw] mx-auto">
       <LocalContext.Provider value={handleSubmitSmartFilter}>
         <div className="flex flex-row w-full gap-1 items-center justify-center px-12">
-          <FilterOptionsDialog />
-          <DisplayTypesDialog displayTypes={DISPLAY_FORMATS} />
+          <FilterOptionsDialog/>
+          <DisplayTypesDialog displayTypes={DISPLAY_FORMATS}/>
           <div className="ml-auto w-[300px]">
-            <SmartFilter loading={loading} onSubmit={handleSubmitSmartFilter} />
+            <SmartFilter loading={loading} onSubmit={handleSubmitSmartFilter}/>
           </div>
         </div>
         <div className="flex items-center justify-center mx-auto">
@@ -354,7 +339,7 @@ function ChartContent() {
 export default function DynamicCharts() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <ChartContent />
+      <ChartContent/>
     </Suspense>
   );
 }

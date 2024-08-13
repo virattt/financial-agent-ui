@@ -23,8 +23,9 @@ Make sure that you have an OpenAI and Polygon API key.
 2. Create a `.env` file in the root project directory (next to `.env.example`) and add the following:
 
    ```
-   OPENAI_API_KEY=YOUR_OPENAI_API_KEY      # Get one at https://platform.openai.com
-   POLYGON_API_KEY=YOUR_POLYGON_API_KEY    # Get one at https://polygon.io
+   OPENAI_API_KEY=               # Get one at https://platform.openai.com
+   FINANCIAL_DATASETS_API_KEY=   # Get one at https://financialdatasets.ai
+   POLYGON_API_KEY=              # Get one at https://polygon.io
    ```
 
 3. Install the `backend` server:

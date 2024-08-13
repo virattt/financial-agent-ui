@@ -17,6 +17,7 @@ This is the backend server for the generative UI financial agent.
    LANGCHAIN_CALLBACKS_BACKGROUND=true
    LANGCHAIN_TRACING_V2=true
    
+   FINANCIAL_DATASETS_API_KEY=            # Get one at https://financialdatasets.ai
    POLYGON_API_KEY=                       # Get one at https://polygon.io
    OPENAI_API_KEY=                        # Get one at https://platform.openai.com
    ```
