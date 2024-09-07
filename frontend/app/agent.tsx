@@ -7,7 +7,7 @@ import { AIMessage } from "@/ai/message";
 import { ChartContainer, ChartLoading } from "@/components/prebuilt/chart-container";
 import React from "react";
 
-const API_URL = "http://localhost:8000/chat";
+const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000/chat";
 
 type ToolComponent = {
   loading: (props?: any) => React.JSX.Element;
@@ -23,14 +23,6 @@ const TOOL_COMPONENT_MAP: ToolComponentMap = {
     loading: (props?: any) => <ChartLoading {...props} />,
     final: (props?: any) => <ChartContainer {...props} />,
   },
-  // "invoice-parser": {
-  //   loading: (props?: any) => <InvoiceLoading {...props} />,
-  //   final: (props?: any) => <Invoice {...props} />,
-  // },
-  // "weather-data": {
-  //   loading: (props?: any) => <CurrentWeatherLoading {...props} />,
-  //   final: (props?: any) => <CurrentWeather {...props} />,
-  // },
 };
 
 async function agent(inputs: {

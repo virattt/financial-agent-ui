@@ -26,13 +26,22 @@ In addition, we use Polygon's [Stocks API](https://polygon.io/docs/stocks) to ge
    POLYGON_API_KEY=              # Get one at https://polygon.io
    ```
 
-3. Install the `backend` server:
+## Run the agent
 
-- Instructions [here](https://github.com/virattt/financial-agent-ui/blob/main/backend/README.md)
+We strongly recommend using Docker to run the application. This will ensure that all dependencies are installed and the application runs smoothly.
 
-4. Install the `frontend` app:
+You can find Docker installation instructions [here](https://docs.docker.com/get-docker/).
 
-- Instructions [here](https://github.com/virattt/financial-agent-ui/blob/main/frontend/README.md)
+Once installed, run the following command in the root project directory to start the application: 
+
+```
+ docker-compose up
+```
+
+If you don't want to use Docker, then you can manually install the application.
+
+- To run the `backend` server, instructions are [here](https://github.com/virattt/financial-agent-ui/blob/main/backend/README.md).
+- To run the `frontend` app, instructions are [here](https://github.com/virattt/financial-agent-ui/blob/main/frontend/README.md).
 
 ## Disclaimer 🛑
 
