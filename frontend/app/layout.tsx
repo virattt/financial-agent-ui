@@ -1,7 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 
-import { EndpointsContext } from "./agent";
+import { EndpointsContext } from "./ai/agent";
 import { ReactNode } from "react";
 
 export const metadata: Metadata = {
