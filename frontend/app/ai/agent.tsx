@@ -3,7 +3,7 @@ import { EventHandlerFields, exposeEndpoints, streamRunnableUI } from "@/utils/s
 import "server-only";
 import { StreamEvent } from "@langchain/core/tracers/log_stream";
 import { createStreamableUI, createStreamableValue } from "ai/rsc";
-import { AIMessage } from "@/ai/message";
+import { AIMessage } from "@/app/ai/message";
 import { ChartContainer, ChartLoading } from "@/components/prebuilt/chart-container";
 import React from "react";
 

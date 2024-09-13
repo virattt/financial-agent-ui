@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { EndpointsContext } from "@/app/agent";
+import { EndpointsContext } from "@/app/ai/agent";
 import { useActions } from "@/utils/client";
 import { LocalContext } from "@/app/shared";
 import { HumanMessageText } from "./message";
