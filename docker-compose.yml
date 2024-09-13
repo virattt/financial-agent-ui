@@ -11,6 +11,9 @@ services:
       - .env
     environment:
       - NEXT_PUBLIC_BACKEND_URL=http://backend:8000/chat
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
     depends_on:
       - backend
 
