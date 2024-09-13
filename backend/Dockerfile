@@ -12,5 +12,5 @@ ENV PYTHONPATH=/app:$PYTHONPATH
 
 EXPOSE 8000
 
-# Run the server
-CMD ["python", "-m", "gen_ui_backend.server"]
+# Run the hot reload script instead of directly running the server
+CMD ["python", "hot_reload.py"]
