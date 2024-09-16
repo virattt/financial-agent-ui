@@ -122,19 +122,6 @@ export default function Chat() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
-        <div className="w-[300px]">
-          <Input
-            placeholder="Upload"
-            id="image"
-            type="file"
-            accept="image/*"
-            onChange={(e) => {
-              if (e.target.files && e.target.files.length > 0) {
-                setSelectedFile(e.target.files[0]);
-              }
-            }}
-          />
-        </div>
         <Button type="submit">Submit</Button>
       </form>
     </div>
