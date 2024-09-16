@@ -9,7 +9,7 @@ from langchain_openai import ChatOpenAI
 from langgraph.graph import END, StateGraph
 from langgraph.graph.graph import CompiledGraph
 
-from .tools.financials import get_financials
+from .tools.financials.search.tool import search_line_items
 from .tools.last_quote import get_last_quote
 from .tools.prices import get_prices
 from .tools.ticker_news import get_ticker_news
@@ -57,7 +57,7 @@ def invoke_model(state: GenerativeUIState, config: RunnableConfig) -> Generative
         ]
     )
     model = ChatOpenAI(model="gpt-4o", temperature=0, streaming=True)
-    tools = [get_last_quote, get_prices, get_financials, get_ticker_news]
+    tools = [get_last_quote, get_prices, get_ticker_news, search_line_items]
     model_with_tools = model.bind_tools(tools)
     chain = initial_prompt | model_with_tools
     result = chain.invoke({"input": state["input"]}, config)
@@ -85,8 +85,8 @@ def invoke_tools(state: GenerativeUIState) -> GenerativeUIState:
     tools_map = {
         "get-last-quote": get_last_quote,
         "get-prices": get_prices,
-        "get-financials": get_financials,
         "get-ticker-news": get_ticker_news,
+        "search-line-items": search_line_items,
     }
 
     if state["tool_calls"] is not None:

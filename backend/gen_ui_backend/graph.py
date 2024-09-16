@@ -1,17 +1,18 @@
 import operator
 from typing import Literal, TypedDict, Annotated, Sequence
+
 from langchain_core.messages import BaseMessage, FunctionMessage
 from langchain_openai.chat_models import ChatOpenAI
 from langgraph.graph import END, StateGraph, MessagesState
 from langgraph.graph.graph import CompiledGraph
 from langgraph.prebuilt import ToolNode
 
-from .tools.financials import get_financials
+from .tools.financials.search.tool import search_line_items
 from .tools.last_quote import get_last_quote
 from .tools.prices import get_prices
 from .tools.ticker_news import get_ticker_news
 
-tools = [get_last_quote, get_prices, get_financials, get_ticker_news]
+tools = [get_last_quote, get_prices, get_ticker_news, search_line_items]
 
 model = ChatOpenAI(model="gpt-4", temperature=0).bind_tools(tools)
 

@@ -6,6 +6,7 @@ import { createStreamableUI, createStreamableValue } from "ai/rsc";
 import { AIMessage } from "@/app/ai/message";
 import { ChartContainer, ChartLoading } from "@/components/prebuilt/chart-container";
 import React from "react";
+import { LineItemsTable, LineItemsTableLoading } from "@/components/prebuilt/line-items-table";
 
 const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000/chat";
 
@@ -23,6 +24,10 @@ const TOOL_COMPONENT_MAP: ToolComponentMap = {
     loading: (props?: any) => <ChartLoading {...props} />,
     final: (props?: any) => <ChartContainer {...props} />,
   },
+  "search-line-items": {
+    loading: (props?: any) => <LineItemsTableLoading/>,
+    final: (props?: any) => <LineItemsTable {...props} />,
+  }
 };
 
 async function agent(inputs: {
@@ -62,14 +67,16 @@ async function agent(inputs: {
       return;
     }
 
-    if (
-      "tool_calls" in event.data.output &&
-      event.data.output.tool_calls.length > 0
-    ) {
+    // Check if the output contains tool calls and if a tool component is not selected yet
+    if ("tool_calls" in event.data.output && event.data.output.tool_calls.length > 0) {
       const toolCall = event.data.output.tool_calls[0];
+
+      // Set the selected tool component and append its loading state to the UI
       if (!selectedToolComponent && !selectedToolUI) {
         selectedToolComponent = TOOL_COMPONENT_MAP[toolCall.type];
         selectedToolUI = createStreamableUI(selectedToolComponent.loading());
+
+        // Append the selected tool UI to the main UI
         fields.ui.append(selectedToolUI?.value);
       }
     }
