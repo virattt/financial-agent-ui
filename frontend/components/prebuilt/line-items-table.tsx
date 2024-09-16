@@ -53,7 +53,7 @@ export const LineItemsTable: React.FC<Props> = ({ search_results }) => {
         <thead className="bg-gray-100">
         <tr>
           {headers.map((header) => (
-            <th key={header} className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th key={header} className="px-6 py-3 text-left text-xs text-white bg-[#0A0C10] uppercase tracking-wider">
               {header.replace(/_/g, ' ').replace(/^\w/, (c) => c.toUpperCase())}
             </th>
           ))}
@@ -63,7 +63,7 @@ export const LineItemsTable: React.FC<Props> = ({ search_results }) => {
         {search_results.map((row, index) => (
           <tr key={index}>
             {headers.map((header) => (
-              <td key={header} className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td key={header} className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                 {financialMetrics.includes(header)
                   ? formatNumber(row[header] as number)
                   : row[header]}
