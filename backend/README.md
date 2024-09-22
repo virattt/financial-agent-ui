@@ -18,7 +18,7 @@ This is the backend server for the generative UI financial agent.
    LANGCHAIN_TRACING_V2=true
    
    FINANCIAL_DATASETS_API_KEY=            # Get one at https://financialdatasets.ai
-   POLYGON_API_KEY=                       # Get one at https://polygon.io
+   TAVILY_API_KEY=                        # Get one at https://tavily.com
    OPENAI_API_KEY=                        # Get one at https://platform.openai.com
    ```
 3. Install dependencies (if using **poetry**):

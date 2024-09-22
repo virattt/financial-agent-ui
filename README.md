@@ -5,7 +5,9 @@ This is a generative UI financial agent.
 We use Vercel's AI [SDK](https://sdk.vercel.ai/docs/introduction) and
 LangChain [agents](https://python.langchain.com/v0.1/docs/modules/agents/) to dynamically answer and render UI.
 
-In addition, we use Polygon's [Stocks API](https://polygon.io/docs/stocks) to get real-time stock data and financials.
+In addition, we use the financial datasets [stock market API](https://www.financialdatasets.ai/) to get real-time stock data and in-depth financials.
+
+Finally, for general web search, we use the Tavily [search API](https://tavily.com/).
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/virattt?style=social)](https://twitter.com/virattt)
 
@@ -23,7 +25,7 @@ In addition, we use Polygon's [Stocks API](https://polygon.io/docs/stocks) to ge
    ```
    OPENAI_API_KEY=               # Get one at https://platform.openai.com
    FINANCIAL_DATASETS_API_KEY=   # Get one at https://financialdatasets.ai
-   POLYGON_API_KEY=              # Get one at https://polygon.io
+   TAVILY_API_KEY=               # Get one at https://tavily.com
    ```
 
 ## Run the agent
