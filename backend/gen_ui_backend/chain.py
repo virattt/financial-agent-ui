@@ -13,6 +13,7 @@ from .tools.financials.search.tool import search_line_items
 from .tools.last_quote import get_last_quote
 from .tools.prices import get_prices
 from .tools.ticker_news import get_ticker_news
+from .tools.web_search.tavily.tool import search_web
 
 
 class GenerativeUIState(TypedDict, total=False):
@@ -57,7 +58,7 @@ def invoke_model(state: GenerativeUIState, config: RunnableConfig) -> Generative
         ]
     )
     model = ChatOpenAI(model="gpt-4o", temperature=0, streaming=True)
-    tools = [get_last_quote, get_prices, get_ticker_news, search_line_items]
+    tools = [get_last_quote, get_prices, search_line_items, search_web]
     model_with_tools = model.bind_tools(tools)
     chain = initial_prompt | model_with_tools
     result = chain.invoke({"input": state["input"]}, config)
@@ -85,8 +86,8 @@ def invoke_tools(state: GenerativeUIState) -> GenerativeUIState:
     tools_map = {
         "get-last-quote": get_last_quote,
         "get-prices": get_prices,
-        "get-ticker-news": get_ticker_news,
         "search-line-items": search_line_items,
+        "search-web": search_web,
     }
 
     if state["tool_calls"] is not None:

@@ -7,6 +7,7 @@ import { AIMessage } from "@/app/ai/message";
 import { ChartContainer, ChartLoading } from "@/components/prebuilt/chart-container";
 import React from "react";
 import { LineItemsTable, LineItemsTableLoading } from "@/components/prebuilt/line-items-table";
+import { WebSearchResults, WebSearchResultsLoading } from "@/components/web-search-results";
 
 const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000/chat";
 
@@ -27,6 +28,10 @@ const TOOL_COMPONENT_MAP: ToolComponentMap = {
   "search-line-items": {
     loading: (props?: any) => <LineItemsTableLoading/>,
     final: (props?: any) => <LineItemsTable {...props} />,
+  },
+  "search-web": {
+    loading: (props?: any) => <WebSearchResultsLoading/>,
+    final: (props?: any) => <WebSearchResults {...props} />,
   }
 };
 
