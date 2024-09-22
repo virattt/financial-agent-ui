@@ -37,16 +37,16 @@ export const WebSearchResults: React.FC<Props> = ({ results }) => {
 
 export const WebSearchResultsLoading: React.FC = () => {
   return (
-    <div className="space-y-6">
-      {[1, 2, 3].map((_, index) => (
-        <div key={index} className="bg-white p-4 rounded-lg shadow">
-          <Skeleton className="h-6 w-3/4 mb-2" />
-          <Skeleton className="h-4 w-full mb-2" />
-          <Skeleton className="h-4 w-full" />
-          <Skeleton className="h-4 w-full" />
-          <Skeleton className="h-4 w-1/2 mt-2" />
-        </div>
-      ))}
+    <div className="w-full">
+      <div className="w-1/2 space-y-4">
+        {[1, 2, 3].map((_, index) => (
+          <div key={index} className="p-4">
+            <Skeleton className="h-[20px] w-[500px] mb-2" />
+            <Skeleton className="h-[20px] w-[500px] mb-2" />
+            <Skeleton className="h-[50px] w-[500px]" />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
