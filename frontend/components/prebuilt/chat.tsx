@@ -105,7 +105,8 @@ export default function Chat() {
   }
 
   return (
-    <div className="w-[70vw] overflow-y-scroll h-[80vh] flex flex-col gap-4 mx-auto border-[1px] border-gray-200 rounded-lg p-3 shadow-sm bg-gray-50/25">
+    <div
+      className="w-[70vw] overflow-y-scroll h-[80vh] flex flex-col gap-4 mx-auto border-[1px] border-gray-200 rounded-lg p-3 shadow-sm bg-gray-50/25">
       <LocalContext.Provider value={onSubmit}>
         <div className="flex flex-col w-full gap-1 mt-auto">{elements}</div>
       </LocalContext.Provider>
@@ -115,12 +116,13 @@ export default function Chat() {
           e.preventDefault();
           await onSubmit(input);
         }}
-        className="w-full flex flex-row gap-2"
+        className="w-[70vw] flex flex-row gap-2 fixed bottom-0 left-1/2 transform -translate-x-1/2 p-3 bg-gray-50/25"
       >
         <Input
           placeholder="What's the latest stock price of NVDA?"
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          className="flex-grow"
         />
         <Button type="submit">Submit</Button>
       </form>

@@ -1,20 +1,17 @@
 import React from 'react';
 import { Skeleton } from "@/components/ui/skeleton";
 
-interface LineItemsData {
+interface InsiderTransactionData {
   ticker: string;
-  report_period: string;
-  period: string;
-
-  [key: string]: string | number; // This allows for dynamic financial metrics
+  [key: string]: string | number; // This allows for dynamic data
 }
 
 interface Props {
-  search_results: LineItemsData[];
+  insider_transactions: InsiderTransactionData[];
 }
 
-export const LineItemsTable: React.FC<Props> = ({ search_results }) => {
-  if (!search_results || !search_results || search_results.length === 0) {
+export const InsiderTransactionsTable: React.FC<Props> = ({ insider_transactions }) => {
+  if (!insider_transactions || !insider_transactions || insider_transactions.length === 0) {
     return <p className="text-gray-500">No data available.</p>;
   }
 
@@ -27,24 +24,25 @@ export const LineItemsTable: React.FC<Props> = ({ search_results }) => {
     }).format(num);
   };
 
-  // Format the report_period to Mon Day, Year
-  search_results.forEach((row) => {
-    row.report_period = new Date(row.report_period).toLocaleDateString('en-US', {
+  // Format the filing_date to Mon Day, Year
+  insider_transactions.forEach((row) => {
+    row.filing_date = new Date(row.filing_date).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'short',
       day: 'numeric',
     });
   });
 
-  const headers = Object.keys(search_results[0]);
+  const headers = Object.keys(insider_transactions[0]);
 
   // Identify which columns are financial metrics (i.e., numbers)
   const financialMetrics = headers.filter(header =>
-    typeof search_results[0][header] === 'number' &&
-    header !== 'ticker' &&
-    header !== 'report_period' &&
-    header !== 'period'
+    typeof insider_transactions[0][header] === 'number' &&
+    header !== 'ticker'
   );
+
+  // Filter out the is_board_director column
+  headers.splice(headers.indexOf('is_board_director'), 1);
 
   return (
     <div className="overflow-x-auto">
@@ -59,7 +57,7 @@ export const LineItemsTable: React.FC<Props> = ({ search_results }) => {
         </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-        {search_results.map((row, index) => (
+        {insider_transactions.map((row, index) => (
           <tr key={index}>
             {headers.map((header) => (
               <td key={header} className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
@@ -76,7 +74,7 @@ export const LineItemsTable: React.FC<Props> = ({ search_results }) => {
   );
 };
 
-export const LineItemsTableLoading: React.FC = () => {
+export const InsiderTransactionsTableLoading: React.FC = () => {
   // Assume we're loading data for 3 rows and 5 columns
   const rowCount = 3;
   const columnCount = 5;

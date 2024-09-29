@@ -8,6 +8,10 @@ import { ChartContainer, ChartLoading } from "@/components/prebuilt/chart-contai
 import React from "react";
 import { LineItemsTable, LineItemsTableLoading } from "@/components/prebuilt/line-items-table";
 import { WebSearchResults, WebSearchResultsLoading } from "@/components/web-search-results";
+import {
+  InsiderTransactionsTable,
+  InsiderTransactionsTableLoading
+} from "@/components/prebuilt/insider-transactions-table";
 
 const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000/chat";
 
@@ -32,6 +36,10 @@ const TOOL_COMPONENT_MAP: ToolComponentMap = {
   "search-web": {
     loading: (props?: any) => <WebSearchResultsLoading/>,
     final: (props?: any) => <WebSearchResults {...props} />,
+  },
+  "insider-transactions": {
+    loading: (props?: any) => <InsiderTransactionsTableLoading/>,
+    final: (props?: any) => <InsiderTransactionsTable {...props} />,
   }
 };
 

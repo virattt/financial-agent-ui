@@ -10,6 +10,7 @@ from langgraph.graph import END, StateGraph
 from langgraph.graph.graph import CompiledGraph
 
 from .tools.financials.search.tool import search_line_items
+from .tools.insider_transactions.tool import insider_transactions
 from .tools.prices import get_prices
 from .tools.web_search.tavily.tool import search_web
 
@@ -56,7 +57,7 @@ def invoke_model(state: GenerativeUIState, config: RunnableConfig) -> Generative
         ]
     )
     model = ChatOpenAI(model="gpt-4o", temperature=0, streaming=True)
-    tools = [get_prices, search_line_items, search_web]
+    tools = [get_prices, search_line_items, search_web, insider_transactions]
     model_with_tools = model.bind_tools(tools)
     chain = initial_prompt | model_with_tools
     result = chain.invoke({"input": state["input"]}, config)
@@ -85,6 +86,7 @@ def invoke_tools(state: GenerativeUIState) -> GenerativeUIState:
         "get-prices": get_prices,
         "search-line-items": search_line_items,
         "search-web": search_web,
+        "insider-transactions": insider_transactions,
     }
 
     if state["tool_calls"] is not None:
